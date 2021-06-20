@@ -25,15 +25,8 @@ class GenerateWordCloud:
         # Display the generated image:
         x= plt.imshow(wordcloud_object, interpolation='bilinear')
         x.axis("off")
-        # x.show()
-        return x
-
-    # def controller(self):
-
-    #     df = pd.read_csv('../data/qa_dataset.csv')
-    #     wd = GenerateWordCloud(dataframe=df, column_name='question')
-    #     wd_obj = wd.get_word_cloud()
-    #     wd.show_word_cloud(wordcloud_object=wd_obj)
+        x.show()
+        # return x
 
 
 if __name__  == '__main__':

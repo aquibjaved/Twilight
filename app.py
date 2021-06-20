@@ -22,7 +22,7 @@ if sd:
 	wd = basic_eda.GenerateWordCloud(dataframe=df, column_name='question')
 	wd_obj = wd.get_word_cloud(max_words=x)
 	try:
-		st.image(wd.show_word_cloud(wordcloud_object=wd_obj).show())
+		st.image(wd.show_word_cloud(wordcloud_object=wd_obj))
 	except:
 		st.image("questions_wordcloud.png")
 	

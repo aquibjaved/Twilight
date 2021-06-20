@@ -8,7 +8,8 @@ def get_install_requirements():
 
 
 setup(
-    name='twilight',
+    name='twilight-nlp',
+    url='https://github.com/aquibjaved/Twilight',
     version='0.0.0',
     description='A no code tool to quickly understand text-based document and it provides an intuitive UI to explore insights from text.',
     author='Sahoo Subranjit , Khan Aquib Javed',
@@ -20,9 +21,8 @@ setup(
         "Intended Audience :: Science/Research",
         "Intended Audience :: Developers",
         "Topic :: Scientific/Engineering :: Artificial Intelligence",
-        "License :: OSI Approved :: Apache License",
+        "License :: OSI Approved :: Apache Software License",
         "Topic :: Scientific/Engineering",
-        "Operating System :: Microsoft :: Windows",
         "Operating System :: POSIX",
         "Operating System :: Unix",
         "Operating System :: MacOS",

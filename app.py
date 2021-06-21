@@ -9,7 +9,7 @@ st.write(
 )
 
 #* Functionality for file upload & column selection
-uploaded_file = st.file_uploader("Load Sample File",type=['txt','csv'])#,'docx','pdf'])
+uploaded_file = st.file_uploader("Load Sample File",type=['txt','csv','tsv','xlsx'])#,'docx','pdf'])
 if uploaded_file:
 	df = pd.read_csv(uploaded_file)
 	_cols = list(df.columns.values)

@@ -14,7 +14,7 @@ if uploaded_file:
 	df = pd.read_csv(uploaded_file)
 	_cols = list(df.columns.values)
 	_col_selected = st.radio("Select column to analyze",_cols) # contains the seleted column values as string
-
+	g_wc = st.button("Generate Word Cloud")
 	
 st.title("Check out a Quick Demo")
 sd= st.button("Load Sample Dataset")

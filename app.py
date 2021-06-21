@@ -8,11 +8,12 @@ st.write(
     "Twilight is a python package to work with text data efficiently. It's a no code tool to quickly understand any text-based document and it provides an intuitive UI to explore insights from text."
 )
 
-
-docx_file = st.file_uploader("Load Sample File",type=['txt','csv'])#,'docx','pdf'])
-#TODO: add functionality for file upload
-if docx_file:
-	st.write("This functionality is under development")
+#* Functionality for file upload & column selection
+uploaded_file = st.file_uploader("Load Sample File",type=['txt','csv'])#,'docx','pdf'])
+if uploaded_file:
+	df = pd.read_csv(uploaded_file)
+	_cols = list(df.columns.values)
+	_col_selected = st.radio("Select column to analyze",_cols) # contains the seleted column values as string
 
 	
 st.title("Check out a Quick Demo")

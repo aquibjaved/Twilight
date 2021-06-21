@@ -9,8 +9,12 @@ st.write(
 )
 
 
-docx_file = st.file_uploader("Load Sample File",type=['txt'])#,'docx','pdf'])
-# if docx_file:
+docx_file = st.file_uploader("Load Sample File",type=['txt','csv'])#,'docx','pdf'])
+#TODO: add functionality for file upload
+if docx_file:
+	st.write("This functionality is under development")
+
+	
 st.title("Check out a Quick Demo")
 sd= st.button("Load Sample Dataset")
 if sd:

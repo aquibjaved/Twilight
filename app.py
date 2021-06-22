@@ -13,8 +13,20 @@ uploaded_file = st.file_uploader("Load Sample File",type=['txt','csv','tsv','xls
 if uploaded_file:
 	df = pd.read_csv(uploaded_file)
 	_cols = list(df.columns.values)
-	_col_selected = st.radio("Select column to analyze",_cols) # contains the seleted column values as string
-	g_wc = st.button("Generate Word Cloud")
+	col1,col2 =st.beta_columns(2)
+	with col1:
+		_col_selected = st.multiselect("Select column to analyze",_cols)
+	#_col_selected = st.radio("Select column to analyze",_cols) # contains the seleted column values as string
+	if _col_selected:
+		# with st.beta_container():
+		with col2:
+			x= st.number_input("Enter no of words",value=100)
+		if x:
+			st.button("Generate Word Cloud")
+			wd = basic_eda.GenerateWordCloud(dataframe=df, column_name=_col_selected[0])
+			wd_obj = wd.get_word_cloud(max_words=x)
+			wd.show_word_cloud(wordcloud_object=wd_obj)
+			st.image("questions_wordcloud.png")
 	
 st.title("Check out a Quick Demo")
 sd= st.button("Load Sample Dataset")

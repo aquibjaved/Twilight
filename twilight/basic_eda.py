@@ -23,9 +23,9 @@ class GenerateWordCloud:
 
     def show_word_cloud(self, wordcloud_object):
         # Display the generated image:
-        x= plt.imshow(wordcloud_object, interpolation='bilinear')
-        x.axis("off")
-        x.show()
+        plt.imshow(wordcloud_object, interpolation='bilinear')
+        plt.axis("off")
+        plt.show()
         # return x
 
 

@@ -2,3 +2,6 @@ settings.json
 exp.py
 .DS_Store
 .idea
+*.pyc
+*.egg-info
+dist/

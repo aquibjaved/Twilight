@@ -2,8 +2,8 @@ from wordcloud import WordCloud
 from typing import List
 import pandas as pd
 import matplotlib.pyplot as plt
-
-
+import streamlit as st
+st.set_option('deprecation.showPyplotGlobalUse', False)
 
 class GenerateWordCloud:
     def __init__(self, dataframe: pd.DataFrame, column_name: str):
@@ -26,6 +26,7 @@ class GenerateWordCloud:
         plt.imshow(wordcloud_object, interpolation='bilinear')
         plt.axis("off")
         plt.show()
+        st.pyplot()
         # return x
 
 

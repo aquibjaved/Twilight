@@ -21,6 +21,7 @@ setup(
         "Intended Audience :: Science/Research",
         "Intended Audience :: Developers",
         "Topic :: Scientific/Engineering :: Artificial Intelligence",
+        "Topic :: Scientific/Engineering :: Natural Language Processing",
         "License :: OSI Approved :: Apache Software License",
         "Topic :: Scientific/Engineering",
         "Operating System :: POSIX",

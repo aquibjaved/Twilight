@@ -5,3 +5,4 @@ exp.py
 *.pyc
 *.egg-info
 dist/
+build/

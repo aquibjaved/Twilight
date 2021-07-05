@@ -1,6 +1,5 @@
 import streamlit as st
-from twilight import basic_eda
-import pandas as pd
+from twilight import basic_eda,file_parsing
 
 st.title("Welcome to Twilight")
 
@@ -10,9 +9,9 @@ st.write(
 
 #* Functionality for file upload & column selection
 uploaded_file = st.file_uploader("Load Sample File",type=['txt','csv','tsv','xlsx'])#,'docx','pdf'])
+
 if uploaded_file:
-	df = pd.read_csv(uploaded_file)
-	# show dataframe
+	df= file_parsing.get_file_obj(uploaded_file=uploaded_file)
 	st.write(df)
 	_cols = list(df.columns.values)
 	col1, col2 =st.beta_columns(2)

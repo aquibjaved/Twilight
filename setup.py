@@ -14,7 +14,7 @@ with open(os.path.join(here, "requirements.txt")) as f:
 setup(
     name='twilight-nlp',
     url='https://github.com/aquibjaved/Twilight',
-    version='0.1.0',
+    version='0.1.1',
     description='A no code tool to quickly understand text-based document and it provides an intuitive UI to explore insights from text.',
     author='Sahoo Subranjit , Khan Aquib Javed',
     author_email='subhranjit93@gmail.com, aquib_marwan@protonmail.com',

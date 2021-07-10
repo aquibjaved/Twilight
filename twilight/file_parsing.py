@@ -14,5 +14,5 @@ def get_file_obj(uploaded_file):
     elif x== ".ssv":
         obj= pd.read_csv(uploaded_file,sep='\s+')
     elif x== ".xlsx":
-        obj = pd.read_excel(uploaded_file)
+        obj = pd.read_excel(uploaded_file, engine='openpyxl')
     return obj

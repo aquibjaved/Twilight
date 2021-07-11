@@ -1,9 +1,13 @@
 # Twilight
-CURRENTLY IN DEVELOPMENT MODE, NOT READY TO USE 
+CURRENTLY IN DEVELOPMENT MODE, FEATURES AND PR'S ARE WELCOME :) 
+ 
 
 # how to run it
-streamlit run app.py
-
+```
+git clone https://github.com/aquibjaved/Twilight.git
+cd Twilight/
+streamlit r app.py
+```
 
 ## Sample plot
-![Alt text](demo.gif?raw=true "Title")
+![Alt text](twilight_demo.gif?raw=true "Title")

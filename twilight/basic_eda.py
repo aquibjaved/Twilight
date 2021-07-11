@@ -3,6 +3,22 @@ from typing import List
 import pandas as pd
 import matplotlib.pyplot as plt
 import streamlit as st
+from dataclasses import dataclass
+import gensim
+from gensim.utils import simple_preprocess
+import nltk
+import gensim.corpora as corpora
+
+try:
+    from nltk.corpus import stopwords
+except:
+    nltk.download('stopwords')
+    from nltk.corpus import stopwords
+
+
+stop_words = stopwords.words('english')
+stop_words.extend(['from', 'subject', 're', 'edu', 'use'])
+
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
 class GenerateWordCloud:
@@ -28,6 +44,47 @@ class GenerateWordCloud:
         plt.show()
         st.pyplot()
         # return x
+
+
+@dataclass()
+class Features:
+    """
+    this code is taken from the following blog
+    https://towardsdatascience.com/end-to-end-topic-modeling-in-python-latent-dirichlet-allocation-lda-35ce4ed6b3e0
+    """
+
+    data: List[str]
+    num_topics: int
+
+
+    def sent_to_words(self, sentences):
+        for sentence in sentences:
+            # deacc=True removes punctuations
+            yield (gensim.utils.simple_preprocess(str(sentence), deacc=True))
+
+
+    def remove_stopwords(self, texts):
+        return [[word for word in simple_preprocess(str(doc))
+                 if word not in stop_words] for doc in texts]
+
+
+    def get_topics(self):
+
+        data_words = list(self.sent_to_words(self.data))
+        id2word = corpora.Dictionary(data_words)
+        # Create Corpus
+        texts = self.remove_stopwords(data_words)
+        texts = data_words
+        # Term Document Frequency
+        corpus = [id2word.doc2bow(text) for text in texts]
+
+
+        lda_model = gensim.models.LdaModel(corpus=corpus,
+                                               id2word=id2word,
+                                               num_topics=self.num_topics)
+        topics = lda_model.print_topics()
+        df_lda = pd.DataFrame(topics)
+        return df_lda
 
 
 if __name__  == '__main__':

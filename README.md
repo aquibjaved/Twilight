@@ -6,7 +6,8 @@ CURRENTLY IN DEVELOPMENT MODE, FEATURES AND PR'S ARE WELCOME :)
 ```
 git clone https://github.com/aquibjaved/Twilight.git
 cd Twilight/
-streamlit r app.py
+pip install -r requirements.txt
+streamlit run app.py
 ```
 
 ## Sample plot

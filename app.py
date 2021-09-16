@@ -27,7 +27,7 @@ if uploaded_file:
 		my_expander2= st.beta_expander(label= "Discover Topics")
 		with my_expander1:
 			x = st.number_input("Enter top-n most frequent words", value=100)
-			wd = basic_eda.GenerateWordCloud(dataframe=df, column_name=_col_selected[0])
+			wd = basic_eda
 			wd_obj = wd.get_word_cloud(max_words=x)
 			st.write(wd.show_word_cloud(wordcloud_object=wd_obj))
 		with my_expander2:
@@ -45,7 +45,7 @@ if sd:
 	data_load_state = st.text('Data Loaded!')
 	x= st.number_input("Enter no of words",value=10)
 	st.subheader("Most frequent words from sample text file")
-	wd = basic_eda.GenerateWordCloud(dataframe=df, column_name='question')
+	wd = basic_eda
 	wd_obj = wd.get_word_cloud(max_words=x)
 	try:
 		st.image(wd.show_word_cloud(wordcloud_object=wd_obj))

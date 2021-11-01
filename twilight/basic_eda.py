@@ -6,10 +6,10 @@ import streamlit as st
 from dataclasses import dataclass
 import io
 import base64
-# import gensim
-# from gensim.utils import simple_preprocess
+import gensim
+from gensim.utils import simple_preprocess
 import nltk
-# import gensim.corpora as corpora
+import gensim.corpora as corpora
 
 try:
     from nltk.corpus import stopwords
@@ -21,25 +21,6 @@ stop_words = stopwords.words('english')
 stop_words.extend(['from', 'subject', 're', 'edu', 'use'])
 
 st.set_option('deprecation.showPyplotGlobalUse', False)
-
-# w = WordCloud().generate('Test')
-# buffer = io.BytesIO()
-# w.to_image().save(buffer, 'png')
-# b64 = base64.b64encode(buffer.getvalue())
-#
-#
-# def show_word_cloud(wordcloud_object):
-#     # Display the generated image:
-#     plt.imshow(wordcloud_object, interpolation='bilinear')
-#     plt.axis("off")
-#     buffer = io.BytesIO()
-#     w.to_image().save(buffer, 'png')
-#     b64 = base64.b64encode(buffer.getvalue())
-#
-#
-#     plt.show()
-#     st.pyplot()
-#     # return x
 
 
 class GenerateWordCloud:
@@ -62,12 +43,31 @@ class GenerateWordCloud:
         b64 = base64.b64encode(buffer.getvalue())
         return b64
 
+def format_result(result: list)->dict:
+    res = {}
+    for r in result:
+        temp_res = []
+        for r_ in r[1].split(' + '):
+            a,b = r_.split('*')
+            temp_res.append({b:a})
+
+        res[r[0]]= temp_res
+
+    return res
+
 
 @dataclass()
 class Features:
     """
     this code is taken from the following blog
     https://towardsdatascience.com/end-to-end-topic-modeling-in-python-latent-dirichlet-allocation-lda-35ce4ed6b3e0
+
+    getTopics = [
+    {
+      0: [{ is: '* 0.92' }, { the: '*0.25' }],
+      1: [{ to: '* 0.92' }, { me: '*0.25' }],
+    },
+     ];
     """
 
     data: List[str]
@@ -95,13 +95,22 @@ class Features:
                                            id2word=id2word,
                                            num_topics=self.num_topics)
         topics = lda_model.print_topics()
-        df_lda = pd.DataFrame(topics)
-        return df_lda
+
+        #df_lda = pd.DataFrame(topics)
+        return [format_result(result=topics)]
 
 
+"""
 if __name__ == '__main__':
     # Read data
     df = pd.read_csv('../data/qa_dataset.csv')
     wd = GenerateWordCloud(dataframe=df, column_name='question')
-    wd_obj = wd.get_word_cloud()
-    show_word_cloud(wordcloud_object=wd_obj)
+    # wd_obj = wd.get_word_cloud()
+    # show_word_cloud(wordcloud_object=wd_obj)
+    ques = df.question.values.tolist()
+
+    feat = Features(data=ques, num_topics=10)
+    # print(feat.get_topics())
+"""
+
+

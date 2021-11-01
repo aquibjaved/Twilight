@@ -1,18 +1,27 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import Dict, AnyStr, Any, List, Union
+from fastapi.middleware.cors import CORSMiddleware
 import pandas as pd
 import sys
-
 sys.path.append('../')
 from twilight.basic_eda import GenerateWordCloud
 
 app = FastAPI()
 
+origins = ["*"]
+app.add_middleware(
+            CORSMiddleware,
+                allow_origins=origins,
+                    allow_credentials=True,
+                        allow_methods=["*"],
+                            allow_headers=["*"],
+                            )
+
+
 JSONObject = Dict[AnyStr, Any]
 JSONArray = List[Any]
 JSONStructure = Union[JSONArray, JSONObject]
-
 
 class GetCloud(BaseModel):
     n_count: int
